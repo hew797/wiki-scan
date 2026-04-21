@@ -1,0 +1,52 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "wiki_scan _progress.json",
+  "description": "扫描进度断点文件。支持断点续传：下次会话读取此文件可从中断处继续，无需重跑全量。",
+  "type": "object",
+  "required": ["project", "skill", "last_updated", "next_action", "phases"],
+  "properties": {
+    "project": {
+      "type": "string",
+      "description": "项目名称"
+    },
+    "skill": {
+      "type": "string",
+      "description": "执行 Skill 版本标识",
+      "example": "wiki_scan_v4"
+    },
+    "last_updated": {
+      "type": "string",
+      "format": "date",
+      "description": "最后一次更新日期"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["IN_PROGRESS", "COMPLETE", "PAUSED"],
+      "description": "整体状态"
+    },
+    "next_action": {
+      "type": "string",
+      "description": "下次续跑时 AI 应该执行的行动描述（自然语言）"
+    },
+    "phases": {
+      "type": "object",
+      "description": "各阶段完成状态。值为 'done' 或 'pending' 或包含子阶段的对象。",
+      "properties": {
+        "P0_detection":      { "type": "string", "enum": ["done", "pending"] },
+        "P1_L0_profile":     { "type": "string", "enum": ["done", "pending"] },
+        "P1_L1_architecture":{ "type": "string", "enum": ["done", "pending"] },
+        "P1_L1_user_flows":  { "type": "string", "enum": ["done", "pending"] },
+        "P2_api":            { "oneOf": [{ "type": "string" }, { "type": "object" }] },
+        "P3_data":           { "oneOf": [{ "type": "string" }, { "type": "object" }] },
+        "P4_components":     { "oneOf": [{ "type": "string" }, { "type": "object" }] },
+        "P5_constraints_unknown": { "type": "string", "enum": ["done", "pending"] },
+        "P6_final_docs":     { "oneOf": [{ "type": "string" }, { "type": "object" }] }
+      }
+    },
+    "outputs": {
+      "type": "object",
+      "description": "已生成的输出文件路径映射（Key 为文件描述，Value 为相对路径）",
+      "additionalProperties": { "type": "string" }
+    }
+  }
+}

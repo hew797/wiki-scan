@@ -1,0 +1,25 @@
+# wiki_scan 项目 .gitignore
+
+# 操作系统产生的文件
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+Thumbs.db
+desktop.ini
+
+# 编辑器配置
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# 本地测试产出（不提交你自己项目的 wiki 输出）
+test_output/
+local_test/
+
+# 如果有人把真实项目的 wiki 输出放在这里，不要提交
+examples/*/wiki/ai/_index.json
+examples/*/wiki/ai/L0_profile.md

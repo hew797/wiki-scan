@@ -1,0 +1,61 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "wiki_scan _index.json",
+  "description": "AI 路由总控文件。AI 执行任务时从此文件出发，按任务类型精准定位所需文档，禁止一次性全量读取知识库。",
+  "type": "object",
+  "required": ["project", "wiki_version", "generated_at", "routing"],
+  "properties": {
+    "project": {
+      "type": "string",
+      "description": "项目名称（与代码库名称保持一致）",
+      "example": "my-legacy-project"
+    },
+    "wiki_version": {
+      "type": "string",
+      "description": "生成此知识库使用的 wiki_scan 版本",
+      "example": "wiki_scan_v4"
+    },
+    "generated_at": {
+      "type": "string",
+      "format": "date",
+      "description": "知识库生成日期（ISO 8601）",
+      "example": "2026-04-21"
+    },
+    "description": {
+      "type": "string",
+      "description": "项目一句话描述，帮助 AI 快速定位系统背景"
+    },
+    "routing": {
+      "type": "object",
+      "description": "路由规则映射表。Key 为任务类型描述，Value 为 AI 应读取的文件路径数组（相对于项目根目录）。",
+      "additionalProperties": {
+        "type": "array",
+        "items": { "type": "string" },
+        "minItems": 1
+      },
+      "example": {
+        "【必读 · 每次任务】": ["wiki/ai/L0_profile.md"],
+        "【新功能开发】": ["wiki/ai/L1_architecture.md", "wiki/ai/L2_api/_catalog.md"],
+        "【代码审查】": ["wiki/ai/L3_constraints.md"]
+      }
+    },
+    "critical_warnings": {
+      "type": "array",
+      "description": "高优先级警告。AI 读取 _index.json 后必须立即处理的安全或数据风险。",
+      "items": { "type": "string" }
+    },
+    "stats": {
+      "type": "object",
+      "description": "项目规模统计，帮助 AI 理解上下文大小",
+      "properties": {
+        "controllers":          { "type": "integer" },
+        "vue_components":       { "type": "integer" },
+        "java_files":           { "type": "integer" },
+        "database_tables":      { "type": "integer" },
+        "documented_apis":      { "type": "integer" },
+        "unknown_logic_items":  { "type": "integer" },
+        "business_qa_questions":{ "type": "integer" }
+      }
+    }
+  }
+}
