@@ -139,9 +139,22 @@ wiki_scan/
 
 ---
 
-## 贡献 / 反馈
+## 交流与反馈 (加入交流群)
 
-发现问题？有新的技术栈需要支持？欢迎提 Issue 或 PR。
+**接手老项目遇到坑了？想要和更多 AI 极客一起探索“AI 自动化编程”的边界？**
+
+欢迎扫码加入**【老何 AI 交流群】**，这里有：
+- `wiki_scan` 的一手更新动态与高阶玩法
+- 最新 AI 开发工具（Cursor/Windsurf/Gemini）的实战调优经验
+- 抱团取暖：老项目自动化重构、AI 提效的硬核讨论
+
+<p align="center">
+  <img src="docs/wechat_qr11.jpg" width="300" alt="扫码加入「老何 AI 交流群」" style="margin-right: 20px;" />
+  <img src="docs/geren.jpg" width="300" alt="加老何个人微信" />
+</p>
+<p align="center"><em>左侧扫码加入「老何 AI 交流群」，右侧扫码添加「老何个人微信」进行深度交流</em></p>
+
+> *如果发现工具 Bug 或有新的技术栈需要支持，也欢迎在 GitHub 提 Issue 或 PR！*
 
 ---
 
